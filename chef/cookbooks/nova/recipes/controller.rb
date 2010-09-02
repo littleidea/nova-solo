@@ -28,7 +28,7 @@ end
 
 template "/etc/redis/redis.conf" do
   source "redis.conf.erb"
-  notifies :restart, resources(:service => "redis-server")
+  notifies :restart, resources(:service => "redis-server"), :immediate
   owner "redis"
   group "redis"
 end
