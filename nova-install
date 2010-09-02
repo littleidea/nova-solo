@@ -2,9 +2,14 @@
 
 SCRIPT_DIR=`dirname $0`
 
+
+echo "WARNING WARNING"
+echo "If nova-install fails after install nova-objectstore run nova-install again"
+
 chef-solo -c $SCRIPT_DIR/chef/chef-solo.rb -j $SCRIPT_DIR/chef/nova.json
 
 # Latest nova-common screws up sudo. I haven't decided how I want to fix it yet 
 # For the time being I will simply delete any includedir commands from /etc/sudoers
 # Annoying
+echo "############ Removing includedir from /etc/sudoers #####"
 sed -i "/includedir/d" /etc/sudoers
